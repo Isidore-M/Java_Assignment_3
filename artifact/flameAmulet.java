@@ -1,4 +1,4 @@
-package artefact;
+package artifact;
 
 public class flameAmulet extends Artefact {
     public flameAmulet() {

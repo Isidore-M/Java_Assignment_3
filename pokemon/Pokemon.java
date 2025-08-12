@@ -7,9 +7,9 @@ public abstract class Pokemon {
     private int Health;
     private int attack;
 
-    public Pokemon(String name, int hp, int attack) {
+    public Pokemon(String name, int health, int attack) {
         this.name = name;
-        this.Health = hp;
+        this.Health = health;
         this.attack = attack;
     }
 
@@ -56,9 +56,9 @@ public abstract class Pokemon {
                 }
                 return attack + 10;
             case SPECIAL:
-                return attack + 5;
+                return attack + 25;
             default:
-                return attack;
+                return attack + 5;
         }
     }
 }

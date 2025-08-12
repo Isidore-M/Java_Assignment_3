@@ -1,9 +1,10 @@
-package artefact;
+package artifact;
 
 public abstract class Artefact {
     private String name;
     private int bonusAttack;
     private int bonusHealth;
+    private int protection;
 
     public Artefact(String name, int bonusAttack, int bonusHealth) {
         this.name = name;

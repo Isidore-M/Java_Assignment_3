@@ -1,9 +1,10 @@
 import pokemon.*;
 import printing.*;
-import artefact.*;
 import attack.*;
 
 import java.util.*;
+
+import artifact.*;
 
 public class Battle {
     private static Ink ink = new Ink();
@@ -34,7 +35,7 @@ public class Battle {
         ink.line();
         // Artefact choices
         Artefact[] artefactChoices = { new flameAmulet(), new hydroShield(), new electricDome(), new stoneArmor() };
-        System.out.printf("\n Now, Choose your Artefact: %n%n");
+        System.out.printf("\n Now, Choose your Artefict: %n%n");
         for (int i = 0; i < artefactChoices.length; i++) {
             System.out.println((i+1) + ". " + artefactChoices[i].getName());
         }
@@ -42,17 +43,20 @@ public class Battle {
         choice = getChoice(scan, 1, artefactChoices.length);
         Artefact chosenArtefact = artefactChoices[choice-1];
 
-        // Apply artefact bonus
+        // Apply artefact bonus. // !CREATE THE SAME FOR THE OPPONENT !
         chosenPokemon.setAttack(chosenPokemon.getAttack() + chosenArtefact.getBonusAttack());
         chosenPokemon.setHealth(chosenPokemon.getHealth() + chosenArtefact.getBonusHealth());
          ink.line();
           System.out.println(" You have a "+BLUE+ chosenPokemon.getName()+" type Pokemon"+RESET);
-          System.out.println("  with "+ BLUE+chosenPokemon.getHealth()+" Health points"+RESET+ " And "+BLUE+ chosenArtefact.getName()+ RESET+ " as Artefact");
+          System.out.println("  with "+ BLUE+chosenPokemon.getHealth()+" Health points"+RESET+ " And "+BLUE+ chosenArtefact.getName()+ RESET+ " as Artifact");
         // Opponent
         Pokemon opponent = pokemonChoices[rand.nextInt(pokemonChoices.length)];
-       
+        Artefact opponentArt = artefactChoices[rand.nextInt(artefactChoices.length)];
+        opponent.setAttack(opponent.getAttack() + opponentArt.getBonusAttack());
+        opponent.setHealth(opponent.getHealth() + opponentArt.getBonusHealth());
+
         System.out.println("\n Your opponent is a " +RED+ opponent.getName()+ " Pokemon type" +RESET);
-        System.out.println("  with "+ RED+ opponent.getHealth()+" Health points " +RESET+ "and a Secret Artefact" );
+        System.out.println("  with "+ RED+ opponent.getHealth()+" Health points " +RESET+ " and " + RED+ opponentArt.getName()+RESET);
          ink.line();
           System.out.println(BLUE +"The Battle now begins"+ RESET);
          ink.line();
@@ -65,6 +69,7 @@ public class Battle {
             ink.line();
             int damage = chosenPokemon.performAttack(playerAttack);
             System.out.println(" You strike your opponent with " + RED + damage + " points damage!"+ RESET);
+            System.out.println("damage is"+ damage);
             opponent.takeDamage(damage);
             System.out.println( GREEN + " Your Opponent's Health is now: " + opponent.getHealth()+ RESET);
             if (!opponent.isAlive()) break;
@@ -74,6 +79,7 @@ public class Battle {
             attackType opponentAttack = attackType.values()[rand.nextInt(3)];
             System.out.println("\nYour Opponent chooses " + opponentAttack + " attack!");
             damage = opponent.performAttack(opponentAttack);
+            System.out.println("damage is"+ damage);
             System.out.println("And  hits you with " + damage + " points damage!");
             chosenPokemon.takeDamage(damage);
             System.out.println(BLUE + " Your Health is now :  " + chosenPokemon.getHealth()+"points"+ RESET);

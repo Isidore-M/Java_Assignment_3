@@ -1,4 +1,4 @@
-package artefact;
+package artifact;
 
 public class hydroShield extends Artefact {
     public hydroShield() {

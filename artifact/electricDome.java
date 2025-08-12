@@ -1,4 +1,4 @@
-package artefact;
+package artifact;
 
 public class electricDome extends Artefact {
     public electricDome() {

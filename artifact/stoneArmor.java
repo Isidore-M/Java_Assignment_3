@@ -1,4 +1,4 @@
-package artefact;
+package artifact;
 
 public class stoneArmor extends Artefact {
     public stoneArmor() {
